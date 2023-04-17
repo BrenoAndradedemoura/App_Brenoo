@@ -19,7 +19,7 @@ export function Login({ navigation }: LoginTypes) {
                 <MaterialIcons name="email" style={styles.icon}/>
                 <TextInput
                   placeholder="E-mail"
-                  placeholderTextColor={colors.black}
+                  placeholderTextColor={colors.thirdLight}
                   keyboardType="email-address"
                   autoCapitalize="none"
                   style={styles.input}
@@ -28,10 +28,10 @@ export function Login({ navigation }: LoginTypes) {
                 />
             </View>
             <View style={styles.formRow}>
-            <FontAwesome5 name="key" size={24} color={colors.primary} />
+            <FontAwesome5 name="key" size={24} color={colors.primary} style={styles.icon}/>
                 <TextInput
                   placeholder="Senha"
-                  placeholderTextColor={colors.black}
+                  placeholderTextColor={colors.thirdLight}
                   secureTextEntry={true}
                   autoCapitalize="none"
                   style={styles.input}
