@@ -38,8 +38,8 @@ export function Login({ navigation }: LoginTypes) {
 
                 />
             </View>
-        <ComponentButtonInterface title="Cadastrar" type="primary" onPressI={()=> { navigation.navigate('Cadastrar')}} /> 
-        <ComponentButtonInterface title="Cadastre-se" type="primary" onPressI={()=> { console.log('Cadastro')}} />  
+        <ComponentButtonInterface title="Entrar" type="primary" onPressI={()=> { console.log('Login')}} /> 
+        <ComponentButtonInterface title="Cadastre-se" type="third" onPressI={()=> { navigation.navigate('Cadastrar')}} />  
         </KeyboardAvoidingView>       
         </View>
     )
