@@ -1,6 +1,6 @@
 import React from 'react';
 import { StackNavigationProp, createStackNavigator, StackCardInterpolationProps} from '@react-navigation/stack';
-import { ScreenLogin, ScreenCadastrar } from "../screens";
+import { ScreenLogin, ScreenCadastrar, ScreenCamera } from "../screens";
 import {TabNavigation} from './tab.navigations';
 import {DrawerNavigation } from './drawer.navigation'
 import { ScreenPhoto } from '../screens/Photo';
@@ -26,6 +26,7 @@ export type LoginTypes = {
       <Stack.Screen name="Tab" component={TabNavigation} />
       <Stack.Screen name="Drawer" component={DrawerNavigation} />  
       <Stack.Screen name="Photo" component={ScreenPhoto} />  
+      <Stack.Screen name="Camera" component={ScreenCamera} /> 
 
     </Stack.Navigator>
   );

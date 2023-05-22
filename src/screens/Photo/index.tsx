@@ -35,8 +35,8 @@ export function ScreenPhoto({navigation}: LoginTypes) {
     // A permissão da câmera ainda não foi dada
     return (
       <View style={styles.container}>
-        <Text style={{ textAlign: 'center', color:colors.secondary, alignItems: "center", marginTop: 10 }}>Permita o acesso à sua câmera!!</Text>
-        <Button onPress={requestPermission} title="Pemissão do Uso da Midia" />
+        <Text style={{ textAlign: 'center', color:colors.secondary, alignItems: "center", marginTop: 50 }}>Permita o acesso à sua câmera!!</Text>
+        <Button onPress={requestPermissionMedia} title="Pemissão do Uso da Midia" />
       </View>
     );
   }
@@ -63,19 +63,19 @@ export function ScreenPhoto({navigation}: LoginTypes) {
     <>
     {photo && photo.uri ? (
       <View style={styles.container}>
-        <View style={styles.ladinho2}>
+        <View style={styles.linha2}>
           <TouchableOpacity onPress={() => navigation.navigate('Tab')}>
-            <Ionicons name="caret-back-circle" size={40} color={colors.secondary} />
+            <Ionicons name="caret-back-circle" size={40} color={colors.white} />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate('Camera')} style={styles.novo}>
-            <MaterialIcons name="add-to-photos" size={40} color={colors.secondary} />
+            <MaterialIcons name="add-to-photos" size={40} color={colors.white} />
           </TouchableOpacity>
         </View>
         <Image source={{ uri: photo.uri }} style={styles.img} />
       </View>
     ):(
     <View style={styles.container}>
-        <TouchableOpacity onPress={() => navigation.navigate('Tab')} style={styles.setinha}>
+        <TouchableOpacity onPress={() => navigation.navigate('Tab')} style={styles.voltar}>
           <Ionicons name="caret-back-circle" size={40} color={colors.secondary} />
         </TouchableOpacity>
       <View style={styles.container2}>

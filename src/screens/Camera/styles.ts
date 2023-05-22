@@ -44,13 +44,22 @@ export const styles = StyleSheet.create({
       alignItems: "flex-end",
       flexDirection: "row",
       justifyContent: "flex-start",
-      marginLeft: 5
+      marginLeft: 10,
+      marginRight: 10,
+      marginTop: 60
     },
-    ladinho: {
+    linha: {
       flexDirection: "row",
       alignItems: "center"
     },
-    setinha: {
+    linha2: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+      marginTop: 25,
+      backgroundColor: colors.primary
+    },
+    voltar: {
       flexDirection: "row",
       justifyContent: "flex-start",
       marginTop: 50

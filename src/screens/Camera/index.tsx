@@ -58,28 +58,24 @@ export function CameraScreen({navigation}: LoginTypes) {
   }
 
   return (
-    <View style={styles.container}>
-      {photo && photo.uri ? (
-        <>
-          <View style={styles.camera2}>
-            <View>
-            <View style={styles.ladinho}>
+    <>
+    {photo && photo.uri ? (
+          <View style={styles.container}>
+            <View style={styles.linha2}>
                 <TouchableOpacity onPress={() => {navigation.navigate('Photo')}} style={styles.botao3}>
-                  <Ionicons name="caret-back-circle" size={40} color={colors.secondary} />
+                  <Ionicons name="caret-back-circle" size={40} color={colors.white} />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={SavePhoto} style={styles.botao3} /*Para salvar */>
-                  <MaterialIcons name="save" size={40} color={colors.secondary} />
+                  <MaterialIcons name="save" size={40} color={colors.white} />
                 </TouchableOpacity>
               </View>
-
                 <Image source={{ uri: photo.uri }} style={styles.img} />
                 <TouchableOpacity onPress={() => navigation.navigate('Photo')} />
-              </View>
           </View>
-        </>
+        
       ) : (
         <Camera style={styles.camera} type={type} ref={ref}>
-          <View style={styles.ladinho}>
+          <View style={styles.linha}>
             <TouchableOpacity onPress={() => navigation.navigate('Photo')} style={styles.botao3} /*Para voltar para o tab */>
                 <Ionicons name="caret-back-circle" size={40} color={colors.white} />
             </TouchableOpacity>
@@ -92,7 +88,6 @@ export function CameraScreen({navigation}: LoginTypes) {
           </View>
         </Camera>
       )}
-
-    </View>
+      </>
   );
 }
