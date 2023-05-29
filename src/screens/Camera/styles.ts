@@ -1,4 +1,5 @@
-import { Dimensions, StyleSheet } from 'react-native';
+import { Dimensions, ImageBackground, StyleSheet } from 'react-native';
+import { color } from 'react-native-reanimated';
 import { colors } from "../../styles/colors";
 
 export const styles = StyleSheet.create({
@@ -63,5 +64,9 @@ export const styles = StyleSheet.create({
       flexDirection: "row",
       justifyContent: "flex-start",
       marginTop: 50
+    },
+    sorriso: {
+      justifyContent: "center",
+      BackgroundColor: colors.white 
     }
   });

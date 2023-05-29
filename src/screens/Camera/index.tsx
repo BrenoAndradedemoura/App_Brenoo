@@ -1,4 +1,4 @@
-import { Camera, CameraCapturedPicture, CameraType } from 'expo-camera';
+import { Camera, CameraCapturedPicture, CameraType, FaceDetectionResult } from 'expo-camera';
 import { useRef, useState } from 'react';
 import { Alert, Button, StyleSheet, Text, Image, View, TouchableOpacity } from 'react-native';
 import { ComponentButtonInterface } from '../../components';
@@ -6,6 +6,8 @@ import { MaterialCommunityIcons, MaterialIcons, Ionicons } from '@expo/vector-ic
 import { styles } from './styles'
 import * as MediaLibrary from 'expo-media-library'
 import * as ImagePicker from 'expo-image-picker';
+import * as FaceDetector from 'expo-face-detector';
+import { BarCodeScanner, BarCodeScannerResult } from 'expo-barcode-scanner';
 import { LoginTypes } from '../../navigations/login.navigation';
 import React from 'react';
 import { colors } from '../../styles/colors';
@@ -23,6 +25,9 @@ export function CameraScreen({navigation}: LoginTypes) {
   const [photo, setPhoto] = useState<CameraCapturedPicture | ImagePicker.ImagePickerAsset>()
   const ref = useRef<Camera>(null)
   const [takePhoto, setTakePhoto] = useState(false)
+  const [ permissionQrCode, requestPermissionQrCode] = BarCodeScanner.usePermissions();
+  const [scanned, setScanned] = useState(false);
+  const [face, setFace] = useState<FaceDetector.FaceFeature>()
 
   if (!permission) {
     // As permissões da câmera estão sendo carregadas
@@ -57,6 +62,21 @@ export function CameraScreen({navigation}: LoginTypes) {
     Alert.alert("Imagem salva com sucesso!")
   }
 
+  const handleFacesDetected = ({ faces }: FaceDetectionResult): void => {
+    if (faces.length > 0) {
+      const faceDetect = faces[0] as FaceDetector.FaceFeature
+      setFace(faceDetect)
+      //console.log(faceDetect)
+    } else {
+      setFace(undefined)
+    }
+  }
+
+  const handleBarCodeScanned = ({type, data}: BarCodeScannerResult) => {
+    setScanned(true);
+    alert(data);
+  };
+
   return (
     <>
     {photo && photo.uri ? (
@@ -74,7 +94,25 @@ export function CameraScreen({navigation}: LoginTypes) {
           </View>
         
       ) : (
-        <Camera style={styles.camera} type={type} ref={ref}>
+        <Camera style={styles.camera} type={type} ref={ref}
+          onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+          onFacesDetected={handleFacesDetected}
+          faceDetectorSettings={{
+            mode: FaceDetector.FaceDetectorMode.accurate,
+            detectLandmarks: FaceDetector.FaceDetectorLandmarks.all,
+            runClassifications: FaceDetector.FaceDetectorClassifications.all,
+            minDetectionInterval: 1000,
+            tracking: true,
+          }}                 
+        >
+          <View style={styles.sorriso}>
+            {face && face.smilingProbability && face.smilingProbability > 0.5 ? (
+              <Text>Sorrindo</Text>
+            ) : (
+              <Text>Não esta Sorrindo</Text>
+            )}
+
+          </View>
           <View style={styles.linha}>
             <TouchableOpacity onPress={() => navigation.navigate('Photo')} style={styles.botao3} /*Para voltar para o tab */>
                 <Ionicons name="caret-back-circle" size={40} color={colors.white} />
