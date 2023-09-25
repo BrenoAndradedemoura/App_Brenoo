@@ -13,6 +13,13 @@ import { LoginTypes } from "../../navigations/login.navigation"
 import { Axios, AxiosError } from "axios"
 import { useAuth } from "../../hooks/auth"
 import { IAuthenticate } from "../../services/data/User"
+export interface IErrorApi {
+    errors: {
+        rule: string
+        field: string
+        message: string
+    } []  
+}
 
 export function Login({navigation}:LoginTypes) {
     const { signIn } = useAuth();
@@ -62,7 +69,7 @@ export function Login({navigation}:LoginTypes) {
 
                 />
             </View>
-        <ComponentButtonInterface title="Entrar" type="primary" onPressI={()=> { navigation.navigate('Tab')}} /> 
+        <ComponentButtonInterface title="Entrar" type="primary" onPressI={handleSignIn} /> 
         <ComponentButtonInterface title="Cadastre-se" type="third" onPressI={()=> { navigation.navigate('Cadastrar')}} />  
         </KeyboardAvoidingView>       
         </View>

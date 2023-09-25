@@ -95,8 +95,7 @@ export function Cadastrar({navigation}: LoginTypes) {
                         style={styles.input}
                     />
             </View>
-        <ComponentButtonInterface title="Salvar" type="primary" onPressI={handleRegister} /> 
-        <ComponentButtonInterface title="Entrar" type="primary" onPressI={()=> {navigation.navigate('Drawer')}} /> 
+        <ComponentButtonInterface title="Salvar" type="primary" onPressI={handleRegister} />  
         <ComponentButtonInterface title="Voltar" type="third" onPressI={()=> { navigation.navigate('Login')}} />  
         </KeyboardAvoidingView>       
         </View>
