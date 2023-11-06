@@ -12,7 +12,7 @@ import { ComponentButtonInterface }  from "../../components"
 import { LoginTypes } from "../../navigations/login.navigation"
 import { Axios, AxiosError } from "axios"
 import { useAuth } from "../../hooks/auth"
-import { IAuthenticate } from "../../services/data/User"
+import { IAuthenticate, IRegister } from "../../services/data/User"
 export interface IErrorApi {
     errors: {
         rule: string
@@ -41,7 +41,9 @@ export function Login({navigation}:LoginTypes) {
             setIsLoading(false)
         }
     }
-
+    function handleChange(item: IRegister ) {
+        setData({...data, ...item})
+    }
     return (
         <View style={styles.container}>
         <KeyboardAvoidingView>
@@ -54,8 +56,7 @@ export function Login({navigation}:LoginTypes) {
                   keyboardType="email-address"
                   autoCapitalize="none"
                   style={styles.input}
-
-            
+                  onChangeText={(i) => handleChange({email: i})}
                 />
             </View>
             <View style={styles.formRow}>
@@ -66,7 +67,7 @@ export function Login({navigation}:LoginTypes) {
                   secureTextEntry={true}
                   autoCapitalize="none"
                   style={styles.input}
-
+                  onChangeText={(i) => handleChange({password: i})}
                 />
             </View>
         <ComponentButtonInterface title="Entrar" type="primary" onPressI={handleSignIn} /> 
